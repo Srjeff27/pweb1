@@ -31,12 +31,6 @@
                         </p>
                     </div>
                     
-                    <a href="{{ route('students.create') }}" class="shrink-0 px-8 py-4 bg-white text-indigo-700 font-extrabold rounded-2xl shadow-xl hover:bg-slate-50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group active:scale-95">
-                        <div class="p-1.5 bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition-colors">
-                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
-                        </div>
-                        Tambah Mahasiswa
-                    </a>
                 </div>
             </div>
 
@@ -167,9 +161,6 @@
                         </div>
                         <h4 class="text-2xl font-extrabold text-slate-800 mb-3 tracking-tight">Database Masih Steril</h4>
                         <p class="text-slate-400 font-medium max-w-sm mb-10 leading-relaxed text-sm">Belum ada jejak data mahasiswa yang terekam dalam sistem. Publikasikan data pertama Anda sekarang.</p>
-                        <a href="{{ route('students.create') }}" class="px-10 py-4 bg-indigo-600 text-white font-extrabold rounded-2xl shadow-2xl shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-300 active:scale-95 text-xs uppercase tracking-widest">
-                            Inisialisasi Data Baru
-                        </a>
                     </div>
                 @endif
             </div>
