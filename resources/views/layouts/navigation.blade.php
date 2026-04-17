@@ -21,6 +21,11 @@
                     <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.*')" class="text-sm font-bold text-slate-600 hover:text-blue-600 transition-all {{ request()->routeIs('students.*') ? 'border-blue-600 text-blue-600' : 'border-transparent' }}">
                         {{ __('Data Mahasiswa') }}
                     </x-nav-link>
+                    @if(auth()->user()->isAdmin())
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" class="text-sm font-bold text-slate-600 hover:text-blue-600 transition-all {{ request()->routeIs('users.*') ? 'border-blue-600 text-blue-600' : 'border-transparent' }}">
+                        {{ __('Kelola User') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -78,6 +83,11 @@
             <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.*')" class="rounded-xl font-bold {{ request()->routeIs('students.*') ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50' }}">
                 {{ __('Data Mahasiswa') }}
             </x-responsive-nav-link>
+            @if(auth()->user()->isAdmin())
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" class="rounded-xl font-bold {{ request()->routeIs('users.*') ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50' }}">
+                {{ __('Kelola User') }}
+            </x-responsive-nav-link>
+            @endif
         </div>
 
         <div class="pt-4 pb-4 border-t border-slate-100">

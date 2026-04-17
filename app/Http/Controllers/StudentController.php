@@ -6,6 +6,7 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class StudentController extends Controller
 {
@@ -17,11 +18,14 @@ class StudentController extends Controller
 
     public function create()
     {
+        Gate::authorize('create', Student::class);
         return view('students.create');
     }
 
     public function store(StoreStudentRequest $request)
     {
+        Gate::authorize('create', Student::class);
+
         $data = $request->validated();
 
         if ($request->hasFile('photo')) {
@@ -40,11 +44,14 @@ class StudentController extends Controller
 
     public function edit(Student $student)
     {
+        Gate::authorize('update', $student);
         return view('students.edit', compact('student'));
     }
 
     public function update(UpdateStudentRequest $request, Student $student)
     {
+        Gate::authorize('update', $student);
+
         $data = $request->validated();
 
         if ($request->hasFile('photo')) {
@@ -61,6 +68,8 @@ class StudentController extends Controller
 
     public function destroy(Student $student)
     {
+        Gate::authorize('delete', $student);
+
         if ($student->photo) {
             Storage::disk('public')->delete($student->photo);
         }

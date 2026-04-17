@@ -4,6 +4,7 @@
             <h2 class="font-semibold text-2xl text-slate-800 dark:text-slate-200 leading-tight">
                 {{ __('Data Mahasiswa') }}
             </h2>
+            @can('create', \App\Models\Student::class)
             <a href="{{ route('students.create') }}" 
                class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150 shadow-lg shadow-indigo-500/30">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -11,6 +12,7 @@
                 </svg>
                 Tambah Mahasiswa
             </a>
+            @endcan
         </div>
     </x-slot>
 
@@ -36,7 +38,9 @@
                                 <th class="px-8 py-5 text-xs font-extrabold uppercase tracking-widest text-slate-400">NIM</th>
                                 <th class="px-8 py-5 text-xs font-extrabold uppercase tracking-widest text-slate-400">Kontak</th>
                                 <th class="px-8 py-5 text-xs font-extrabold uppercase tracking-widest text-slate-400">Alamat</th>
+                                @can('create', \App\Models\Student::class)
                                 <th class="px-8 py-5 text-xs font-extrabold uppercase tracking-widest text-slate-400 text-right">Aksi</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-50">
@@ -81,6 +85,7 @@
                                             {{ $student->address ?? 'Alamat belum diatur' }}
                                         </div>
                                     </td>
+                                    @can('update', $student)
                                     <td class="px-8 py-6 text-right whitespace-nowrap">
                                         <div class="flex justify-end gap-2">
                                             <a href="{{ route('students.show', $student) }}" class="p-2 bg-slate-50 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">
@@ -98,10 +103,17 @@
                                             </form>
                                         </div>
                                     </td>
+                                    @else
+                                    <td class="px-8 py-6 text-right whitespace-nowrap">
+                                        <a href="{{ route('students.show', $student) }}" class="p-2 bg-slate-50 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all inline-block">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                        </a>
+                                    </td>
+                                    @endcan
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="px-8 py-20 text-center">
+                                    <td colspan="{{ auth()->user()->can('create', \App\Models\Student::class) ? 5 : 4 }}" class="px-8 py-20 text-center">
                                         <div class="flex flex-col items-center">
                                             <div class="w-20 h-20 bg-slate-50 rounded-[2rem] flex items-center justify-center mb-6 border border-slate-100">
                                                 <svg class="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
