@@ -27,9 +27,11 @@
                 <span class="text-2xl font-extrabold text-slate-800 tracking-tight">Portal<span class="text-blue-600">SIA</span></span>
             </div>
 
-            @if (Route::has('login'))
-                <div class="flex items-center gap-4">
-                    @auth
+            <div class="flex items-center gap-6">
+                <a href="{{ route('public.students') }}" class="text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors">Direktori Mahasiswa</a>
+                @if (Route::has('login'))
+                    <div class="flex items-center gap-4 border-l border-slate-200 pl-6">
+                        @auth
                         <a href="{{ url('/dashboard') }}" class="px-6 py-2.5 text-sm font-bold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/40 hover:-translate-y-0.5">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Log in</a>
@@ -37,8 +39,9 @@
                             <a href="{{ route('register') }}" class="px-6 py-2.5 text-sm font-bold text-blue-600 bg-white border border-blue-100 rounded-full hover:bg-blue-50 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">Register</a>
                         @endif
                     @endauth
-                </div>
-            @endif
+                    </div>
+                @endif
+            </div>
         </nav>
 
         <main class="flex-1 flex items-center justify-center px-6 py-12 w-full max-w-7xl mx-auto">
@@ -119,6 +122,7 @@
                 </div>
             </div>
         </main>
+
 
         <footer class="py-8 text-center relative z-10 w-full">
             <p class="text-sm text-slate-500 font-semibold">

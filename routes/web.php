@@ -6,7 +6,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/direktori-mahasiswa', function () {
+    $students = \App\Models\Student::latest()->get();
+    return view('public.students', compact('students'));
+})->name('public.students');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
